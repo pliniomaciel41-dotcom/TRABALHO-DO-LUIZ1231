@@ -1,0 +1,295 @@
+<!-- CARDAPIO.HTML -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio</title>
+
+    <link rel="stylesheet" href="stylePEDRO.css">
+</head>
+
+<body>
+
+    <a href="login.html" class="sair">
+        Sair
+    </a>
+
+    <h1>Cardápio</h1>
+
+    <div class="layout">
+
+        <div class="menu">
+
+            <!-- HAMBÚRGUER -->
+            <div class="card" onclick="adicionarItem('Hambúrguer', 28)">
+
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000&auto=format&fit=crop">
+
+                <div>
+
+                    <h2>Hambúrguer</h2>
+
+                    <p>
+                        Hambúrguer artesanal com cheddar
+                    </p>
+
+                    <span>R$ 28,00</span>
+
+                </div>
+
+            </div>
+
+            <!-- PIZZA -->
+            <div class="card" onclick="adicionarItem('Pizza', 45)">
+
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000&auto=format&fit=crop">
+
+                <div>
+
+                    <h2>Pizza</h2>
+
+                    <p>
+                        Pizza de calabresa com queijo.
+                    </p>
+
+                    <span>R$ 45,00</span>
+
+                </div>
+
+            </div>
+
+            <!-- BATATA -->
+            <div class="card" onclick="adicionarItem('Batata Frita', 18)">
+
+                <img src="batata.png">
+
+                <div>
+
+                    <h2>Batata Frita</h2>
+
+                    <p>
+                        Batata crocante com cheddar e bacon.
+                    </p>
+
+                    <span>R$ 18,00</span>
+
+                </div>
+
+            </div>
+
+            <!-- AÇAÍ -->
+            <div class="card" onclick="adicionarItem('Açaí', 22)">
+
+                <img src="acai.png">
+
+                <div>
+
+                    <h2>Açaí</h2>
+
+                    <p>
+                        Açaí cremoso com frutas e leite condensado.
+                    </p>
+
+                    <span>R$ 22,00</span>
+
+                </div>
+
+            </div>
+
+            <!-- REFRIGERANTE -->
+            <div class="card" onclick="adicionarItem('Refrigerante', 7)">
+
+                <img src="cocacola.png">
+
+                <div>
+
+                    <h2>Refrigerante</h2>
+
+                    <p>
+                        Coca-Cola gelada 350ml.
+                    </p>
+
+                    <span>R$ 7,00</span>
+
+                </div>
+
+            </div>
+
+            <!-- MILKSHAKE -->
+            <div class="card" onclick="adicionarItem('Milkshake', 16)">
+
+                <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?q=80&w=1000&auto=format&fit=crop">
+
+                <div>
+
+                    <h2>Milkshake</h2>
+
+                    <p>
+                        Milkshake cremoso de morango.
+                    </p>
+
+                    <span>R$ 16,00</span>
+
+                </div>
+
+            </div>
+
+            <!-- COMBO -->
+            <div class="card" onclick="adicionarItem('Combo Burger', 39.90)">
+
+                <img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?q=80&w=1000&auto=format&fit=crop">
+
+                <div>
+
+                    <h2>Combo Burger</h2>
+
+                    <p>
+                        Hambúrguer + batata + refrigerante.
+                    </p>
+
+                    <span>R$ 39,90</span>
+
+                </div>
+
+            </div>
+
+            <!-- SOBREMESA -->
+            <div class="card" onclick="adicionarItem('Sobremesa', 20)">
+
+                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=1000&auto=format&fit=crop">
+
+                <div>
+
+                    <h2>Sobremesa</h2>
+
+                    <p>
+                        Bolinho de sorvete.
+                    </p>
+
+                    <span>R$ 20,00</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARRINHO -->
+        <div class="carrinho">
+
+            <h2>Carrinho</h2>
+
+            <ul id="lista-carrinho"></ul>
+
+            <h3>
+                Total: R$
+                <span id="total">0,00</span>
+            </h3>
+
+            <div class="botoes-carrinho">
+
+                <button onclick="limparCarrinho()">
+                    Limpar
+                </button>
+
+                <button onclick="finalizarCompra()">
+                    Finalizar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<script>
+
+let carrinho = {};
+
+function adicionarItem(nome, preco) {
+
+    if (!carrinho[nome]) {
+
+        carrinho[nome] = {
+            preco: preco,
+            quantidade: 0
+        };
+    }
+
+    carrinho[nome].quantidade++;
+
+    mostrarCarrinho();
+}
+
+function mostrarCarrinho() {
+
+    const lista = document.getElementById("lista-carrinho");
+
+    const totalTela = document.getElementById("total");
+
+    lista.innerHTML = "";
+
+    let total = 0;
+
+    Object.keys(carrinho).forEach(function(nome) {
+
+        const produto = carrinho[nome];
+
+        if (produto.quantidade > 0) {
+
+            total += produto.preco * produto.quantidade;
+
+            lista.innerHTML += `
+                <li>
+                    <span>${nome} x${produto.quantidade}</span>
+
+                    <button onclick="removerItem('${nome}')">
+                        X
+                    </button>
+                </li>
+            `;
+        }
+    });
+
+    totalTela.innerText = total.toFixed(2).replace(".", ",");
+}
+
+function removerItem(nome) {
+
+    carrinho[nome].quantidade--;
+
+    if (carrinho[nome].quantidade <= 0) {
+
+        delete carrinho[nome];
+    }
+
+    mostrarCarrinho();
+}
+
+function limparCarrinho() {
+
+    carrinho = {};
+
+    mostrarCarrinho();
+}
+
+function finalizarCompra() {
+
+    if (Object.keys(carrinho).length === 0) {
+
+        alert("Seu carrinho está vazio!");
+
+    } else {
+
+        alert("Compra finalizada com sucesso!");
+    }
+}
+
+</script>
+
+</body>
+
+</html>

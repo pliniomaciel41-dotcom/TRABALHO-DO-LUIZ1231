@@ -1,0 +1,173 @@
+<!-- CADASTRO.HTML -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro Cliente</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Cadastro do Cliente</h1>
+
+    <form>
+
+        <input type="text"
+        name="nome"
+        placeholder="Nome completo"
+        required>
+
+        <input type="email"
+        name="email"
+        placeholder="E-mail"
+        required>
+
+        <input type="password"
+        id="senha"
+        name="senha"
+        placeholder="Senha"
+        required>
+
+        <ul class="validacao-senha">
+
+            <li id="regra8" class="vazio">
+                • Mínimo de 8 caracteres
+            </li>
+
+            <li id="regraMaiuscula" class="vazio">
+                • Uma letra maiúscula
+            </li>
+
+            <li id="regraNumero" class="vazio">
+                • Um número
+            </li>
+
+            <li id="regraEspecial" class="vazio">
+                • Um caractere especial
+            </li>
+
+        </ul>
+
+        <input type="password"
+        name="confirmarSenha"
+        placeholder="Confirmar senha"
+        required>
+
+        <input type="tel"
+        name="telefone"
+        placeholder="Telefone"
+        required>
+
+        <input type="text"
+        name="endereco"
+        placeholder="Endereço"
+        required>
+
+        <div class="termos">
+
+            <input type="checkbox"
+            required>
+
+            <p>
+                Eu concordo com os
+
+                <span>
+                    termos de cadastro e política de privacidade.
+                </span>
+
+            </p>
+
+        </div>
+
+        <button 
+        type="button"
+        class="cadastro-btn"
+        onclick="window.location.href='cardapio.html'">
+
+            Cadastrar Cliente
+
+        </button>
+
+        <p style="text-align:center; margin-top:15px; color:white;">
+
+            Já possui conta?
+
+            <a href="login.html"
+            style="color:#00aaff; font-weight:bold;">
+
+                Fazer login
+
+            </a>
+
+        </p>
+
+    </form>
+
+</div>
+
+<script>
+
+const senha = document.getElementById("senha");
+
+const regra8 = document.getElementById("regra8");
+const regraMaiuscula = document.getElementById("regraMaiuscula");
+const regraNumero = document.getElementById("regraNumero");
+const regraEspecial = document.getElementById("regraEspecial");
+
+senha.addEventListener("input", () => {
+
+    let valor = senha.value;
+
+    if(valor.length === 0){
+
+        regra8.className = "vazio";
+        regraMaiuscula.className = "vazio";
+        regraNumero.className = "vazio";
+        regraEspecial.className = "vazio";
+
+        return;
+    }
+
+    if(valor.length >= 8){
+        regra8.className = "correto";
+    } else {
+        regra8.className = "errado";
+    }
+
+    if(/[A-Z]/.test(valor)){
+        regraMaiuscula.className = "correto";
+    } else {
+        regraMaiuscula.className = "errado";
+    }
+
+    if(/[0-9]/.test(valor)){
+        regraNumero.className = "correto";
+    } else {
+        regraNumero.className = "errado";
+    }
+
+    if(/[*@#$%&!]/.test(valor)){
+        regraEspecial.className = "correto";
+    } else {
+        regraEspecial.className = "errado";
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+
+    background-image:url("fundo.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+.container{
+    width:470px;
+
+    background:rgba(185,128,0,0.80);
+
+    padding:45px 40px;
+
+    border-radius:22px;
+
+    border:2px solid #ffd000;
+
+    box-shadow:0 0 25px rgba(0,0,0,0.5);
+
+    backdrop-filter:blur(5px);
+}
+
+h1{
+    color:white;
+
+    font-size:40px;
+
+    text-align:center;
+
+    margin-bottom:30px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+}
+
+input{
+    width:100%;
+
+    height:52px;
+
+    margin-bottom:15px;
+
+    border:none;
+    border-radius:12px;
+
+    outline:none;
+
+    padding:0 18px;
+
+    font-size:16px;
+
+    background:rgba(255,255,255,0.96);
+
+    color:black;
+}
+
+input::placeholder{
+    color:#555;
+}
+
+.validacao-senha{
+    list-style:none;
+
+    margin-top:-8px;
+    margin-bottom:12px;
+
+    font-size:11px;
+}
+
+.validacao-senha li{
+    margin-bottom:4px;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.vazio{
+    color:white;
+}
+
+.errado{
+    color:red;
+}
+
+.correto{
+    color:lime;
+}
+
+.termos{
+    display:flex;
+    align-items:flex-start;
+
+    gap:10px;
+
+    margin-bottom:18px;
+
+    font-size:14px;
+
+    color:white;
+}
+
+.termos input{
+    width:18px;
+    height:18px;
+
+    margin-top:2px;
+}
+
+.termos span{
+    color:#00aaff;
+
+    cursor:pointer;
+
+    text-decoration:underline;
+}
+
+.cadastro-btn{
+    width:100%;
+
+    height:55px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#ffd000;
+
+    color:black;
+
+    font-size:20px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.cadastro-btn:hover{
+    background:#e6bc00;
+}
+
+.link-login{
+    text-align:center;
+
+    margin-top:15px;
+
+    color:white;
+}
+
+.link-login a{
+    color:#00aaff;
+
+    font-weight:bold;
+
+    text-decoration:none;
+}
+
+.link-login a:hover{
+    text-decoration:underline;
+}
+
+@media (max-width:768px){
+
+    .container{
+        width:95%;
+        padding:30px 25px;
+    }
+
+    h1{
+        font-size:30px;
+    }
+
+}
